@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title><ion-icon name="arrow-back-outline" (click)="goBack()" style="margin-right: 10px;"></ion-icon>Sign Up</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="margin: 10px;">
+    <form [formGroup]="signUp">
+      <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input  formControlName="name" ></ion-input> 
+      </ion-item>
+      <div *ngIf="signUp.get('name').touched && signUp.get('name').invalid" style="color: red;padding: 20px;">
+        Email is Required
+      </div>
+      <br>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input  formControlName="email" ></ion-input> 
+      </ion-item>
+      <div *ngIf="signUp.get('email').touched && signUp.get('email').invalid" style="color: red;padding: 20px;">
+        Email is Required
+      </div>
+      <br>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input  formControlName="password"></ion-input>
+      </ion-item>
+      <div *ngIf="signUp.get('password').touched && signUp.get('password').invalid" style="color: red;padding: 20px;">
+        Password is Required
+      </div>
+      <br>
+    <ion-button color="primary" [disabled]="!signUp.valid" (click)="signup(signUp.value)">Create Account</ion-button>
+    <!-- <ion-button color="secondary"(click)="goBack()" >Back</ion-button> -->
+    </form>
+</div>
+
+
+</ion-content>

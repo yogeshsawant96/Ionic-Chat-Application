@@ -1,0 +1,134 @@
+<ion-header header>
+
+  <!-- <ion-toolbar  color="tertiary">
+    <ion-title style="padding: 20px;color: whitesmoke;" size="small">
+      <ion-icon name="chatbox-outline" style="margin-right: 10px;"></ion-icon>Messaging
+    </ion-title>
+  </ion-toolbar> -->
+
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="primary" (click)="logout()">
+      <ion-button color="">
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title size="small">
+      <ion-icon name="chatbox-outline" style="margin-right: 10px;"></ion-icon>Conversations
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="font-family: 'Open Sans Condensed', sans-serif;">
+  <div data-toggle="collapse" style="background-color: #707bf9;padding: 10px;color: whitesmoke;" data-target="#demo">
+    <ion-icon name="star-outline"></ion-icon> Channels <ion-icon class="float-right" name="caret-down-outline">
+    </ion-icon>
+  </div>
+
+  <div id="demo" class="collapse">
+    <ion-list>
+
+      <div class="" *ngFor="let active of currentUserChannels">
+
+        
+        <div class="" *ngFor="let channelName of Channels"  (click)="selectChannel(channelName)">
+          <ion-item button *ngIf="channelName.channel==active">
+            <ion-avatar slot="start">
+              <ion-icon name="people-circle-outline" style="font-size: 40px;color: gray;"></ion-icon>
+            </ion-avatar>
+            <ion-label>
+              <i class="fa fa-sitemap" aria-hidden="true" style="margin-right: 10px;font-size: 10px;color: grey;"></i>
+              {{channelName.channel}}
+            </ion-label>
+          </ion-item>
+        </div>
+
+
+      </div>
+
+    </ion-list>
+    <ion-item>
+      <ion-icon name="add-outline" style="margin-left: 10px;"></ion-icon>
+      <span style="margin-left: 15px;" (click)="createChannel()"> Create Channel</span>
+    </ion-item>
+  </div>
+  <div data-toggle="collapse" data-target="#friends"
+    style=" background-color: #707bf9;padding: 10px;color: whitesmoke;">
+    <ion-icon name="person-circle-outline"></ion-icon> Friends <ion-icon class="float-right" name="caret-down-outline">
+    </ion-icon>
+  </div>
+
+  <div>
+    <div  *ngFor="let user of newusers;let i = index" [attr.data-index]="i">
+      <ion-grid style="border-bottom: 0.1px solid grey;margin-left: 10px;margin-right: 10px;"
+        *ngIf="currentUserEmail!=user.email" (click)="selectUSer(user)">
+        <ion-row style="">
+          <ion-col size="2" style="">
+            <ion-icon name="person-circle-outline" *ngIf="user.status"
+              style="color:gray;font-size: 45px;margin-top: 10px;margin-left: 5px;"></ion-icon>
+            <ion-icon name="person-circle-outline" *ngIf="!user.status"
+              style="color: gray;font-size: 45px;margin-top: 10px;margin-left: 5px;"></ion-icon>
+          </ion-col>
+          <ion-row style="width: 80%;ackground-color: chocolate;padding-left: 20px;">
+            <ion-col size="12" style="margin-top: 10px;">
+              {{user.name}}<ion-icon *ngIf="user.status" class="float-right" style="color: green;margin-top: 10px;" name="radio-button-on-outline"></ion-icon>
+            </ion-col>
+            <ion-col size="12" style="color: gray">
+              <!-- //MY SMS -->
+  
+              <!-- <div *ngFor="let smsEmail of newusers;let i=index;" > -->
+                  
+                <!-- <div *ngIf="smsEmail.user==user.email">   -->
+                <!-- //  || smsEmail.from==_email) for sender -->
+                  {{user.message}}
+                  <span class="float-right"
+                    style="font-size: 10px;">{{user.time | slice:0:5 }}{{user.time|slice:9:11}}
+                  </span>
+                <!-- </div> -->
+              <!-- </div> -->
+              
+            </ion-col>
+          </ion-row>
+        </ion-row>
+      </ion-grid>
+    </div>
+    
+  </div>
+  
+</ion-content>
+<!-- 
+  <div *ngFor="let user of oUser;let i = index" [attr.data-index]="i">
+        <ion-grid style="border-bottom: 0.1px solid grey;margin-left: 10px;margin-right: 10px;"
+          *ngIf="currentUserEmail!=user.email" (click)="selectUSer(user)">
+          <ion-row style="">
+            <ion-col size="2" style="">
+              <ion-icon name="person-circle-outline" *ngIf="user.status"
+                style="color: rgb(32, 165, 76);font-size: 45px;margin-top: 10px;margin-left: 5px;"></ion-icon>
+              <ion-icon name="person-circle-outline" *ngIf="!user.status"
+                style="color: gray;font-size: 45px;margin-top: 10px;margin-left: 5px;"></ion-icon>
+            </ion-col>
+            <ion-row style="width: 80%;ackground-color: chocolate;padding-left: 20px;">
+              <ion-col size="12" style="margin-top: 10px;">
+                {{user.name}}
+              </ion-col>
+              <ion-col size="12" style="color: gray">
+                //MY SMS
+
+                <div *ngFor="let smsEmail of allLastSms;let i=index;" >
+                  
+                  <div *ngIf="smsEmail.user==user.email;">  
+                  //  || smsEmail.from==_email) for sender
+                    {{smsEmail.message}}
+                    <span class="float-right"
+                      style="font-size: 10px;">{{smsEmail.time | slice:0:5 }}{{smsEmail.time|slice:9:11}}
+                    </span>
+
+                  </div>
+                </div>
+                
+              </ion-col>
+            </ion-row>
+          </ion-row>
+        </ion-grid>
+      </div>
+ -->

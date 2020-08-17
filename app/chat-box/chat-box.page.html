@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-row>
+      <ion-col size="1">
+        <ion-back-button></ion-back-button>
+      </ion-col>
+      <ion-col  size="1"  style="margin-left: 15px;">
+        <ion-icon name="person-circle-outline" style="font-size: 35px;margin-right: 10px;margin-top: 10px;"></ion-icon>
+      </ion-col>
+      <ion-col  size="8" style="margin-top: 5px;">
+        <ion-title>{{tempaName['name']}}</ion-title>
+        <ion-label  style="margin-left: 20px;font-size: 13px;" *ngIf="TypingFlag">
+          typing ...
+        </ion-label>
+      </ion-col>
+
+    </ion-row>
+  
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  
+    <div class="col-md-12 col-lg-12 col-sm-12 col-12" scrollEvents="true"  *ngFor="let sms of communication" style="font-family: 'Open Sans Condensed', sans-serif;" >
+    
+      <a class="float-right col-md-7  col-lg-7 col-sm-7 col-7" *ngIf="tempaName['email']==sms.user" data-toggle="collapse"
+        
+        style="background-color: rgb(88, 87, 87);padding: 5px;padding-left: 15px;color: white;border-radius: 10px 10px 0px 10px;text-decoration: none;margin-bottom: 5px;">
+        {{sms.message}} <small class="float-right" style="font-size: 10px;"> {{sms.time | slice:0:5 }} {{sms.time|slice:9:11}}</small>
+        <div class="collapse" style="padding: 10px;">
+          <i class="fa fa-trash-o float-right" style="padding: 5px;"  data-toggle="tooltip"
+            title="Delete" aria-hidden="true"></i>
+          <!-- <ion-icon class="float-right" style="padding: 5px;" data-toggle="tooltip" title="Delete"  (click)="DeleteMessage(sms)" name="trash-outline"></ion-icon> -->
+        </div>
+      </a>
+      <div  class="float-left col-md-7  col-lg-7 col-sm-7 col-7" *ngIf="tempaName['email']!=sms.user"
+        style="border-radius: 10px 10px 10px 0px;background-color: rgb(70, 160, 73);padding: 5px;padding-left: 20px;color: whitesmoke;margin-bottom: 5px;">
+        {{sms.message}} <small class="float-right" style="font-size: 10px;"> {{sms.time | slice:0:5 }} {{sms.time|slice:9:11}}</small>
+        <!-- {{sms.user}} -->
+      </div>
+    </div>
+  
+</ion-content>
+<div style="margin-top: 40px;margin-left: -5px;">
+  <ion-grid style="width: 100%;">
+    <ion-row style="position: fixed;bottom: 0;background-color: transparent;width: 100%;">
+      <ion-col size="9"  style="height: 40px;margin-top: 5px;">
+        <ion-input (keydown.enter)="onKeydown($event)" (input)="typing($event.target.value)"  style="background-color: rgb(251, 251, 251);height: 35px;margin-left: 5px;border-radius: 15px;border: 1px solid grey;font-family: 'Open Sans Condensed', sans-serif;"  [(ngModel)]="newMessage" placeholder="Message" >
+        </ion-input>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button color="success" (click)="sendMessage()" style="border-radius: 50%;">
+          <ion-icon name="send-outline"></ion-icon>
+        </ion-button>
+        <!-- <button color="success" style="padding: 5px;">
+          <ion-icon name="send-outline"></ion-icon>
+        </button> -->
+      </ion-col>
+  
+    </ion-row>
+  </ion-grid>
+
+</div>
+
+<!-- <ion-input (keydown.enter)="onKeydown($event)" [(ngModel)]="newMessage" placeholder="Message"
+                style="background-color: rgb(189, 187, 187);position: fixed;bottom: 5px;width: 75%;border-radius: 15px;">
+  </ion-input> -->
+
+<!-- <ion-button style="margin-top: -5px;position: fixed;bottom: 5px;" (click)="sendMessage()">
+  <ion-icon name="send-outline"></ion-icon>
+</ion-button> -->

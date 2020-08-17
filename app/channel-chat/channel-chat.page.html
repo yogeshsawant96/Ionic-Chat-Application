@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar color="tertiary" style="height: 70px;">
+    <!-- <ion-buttons slot="start" >
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title><ion-icon name="people-circle-outline"></ion-icon>{{currentChannel.channel}}
+    </ion-title> -->
+    <ion-row>
+      <ion-col size="1">
+        <ion-back-button></ion-back-button>
+      </ion-col>
+      <ion-col  size="1" style="margin-left: 15px;">
+        <ion-icon name="people-circle-outline" style="font-size: 40px;margin-top: 10px;"></ion-icon>
+      </ion-col>
+      <ion-col  size="8" style="margin-top: 5px;" (click)="openInfo()">
+        <ion-title>{{currentChannel.channel}}</ion-title>
+        <ion-label *ngIf="typingFlag" style="margin-left: 20px;">
+          {{typingUserName}} typing...
+        </ion-label>
+      </ion-col>
+      <ion-col size="1">
+        <ion-icon name="ellipsis-vertical-outline" (click)="openPop($event)" style="font-size: 25px;margin-top: 15px;"></ion-icon>
+      </ion-col>
+
+    </ion-row>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <div *ngFor="let sms of Communication" style="padding: 20px;">
+    <!-- <p style="background-color: rosybrown;padding: 10px;">
+      {{sms.message}}{{sms.user}}
+    </p> -->
+    <div class="col-7 float-left" *ngIf="currentUsername!=sms.user">
+      <div class="row"
+        style="background-color: rgb(68, 128, 50);padding: 10px;color: whitesmoke;border-radius: 10px 10px 10px 0px;margin-bottom: 5px;">
+
+        <div class="col-12 col-md-12 col-lg-12 float-left">
+          <small style="border-bottom: 1px solid;"> {{sms.user}}</small>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12">
+          {{sms.message}}
+
+        </div>
+        <div class="col-12 col-md-12 col-lg-12">
+
+          <small class=" float-right">{{sms.time | slice:0:5 }}
+            {{sms.time|slice:9:11}}</small>
+        </div>
+      </div>
+    </div>
+    <!-- ######################################## -->
+    <div class="col-7 float-right" *ngIf="currentUsername==sms.user">
+      <div class="row"
+        style="background-color: rgba(42, 41, 41, 0.5);padding: 10px;color: whitesmoke;border-radius: 10px 10px 0px 10px;margin-bottom: 5px;">
+
+        <div class="col-12 col-md-12 col-lg-12 float-left">
+          <small style="border-bottom: 1px solid;"> {{sms.user}}</small>
+        </div>
+        <div class="col-12 col-md-12 col-lg-12">
+          {{sms.message}}
+
+        </div>
+        <div class="col-12 col-md-12 col-lg-12">
+
+          <small class=" float-right">{{sms.time | slice:0:5 }}
+            {{sms.time|slice:9:11}}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+</ion-content>
+<div style="margin-top: 50px;">
+
+
+  <!-- <ion-grid style="width: 100%;margin-left: -5px;"> -->
+    <ion-row style="position: fixed;bottom: 0;background-color: rgb(224, 224, 224);width: 100%;">
+      <ion-col size="9" style="height: 40px;margin-top: 5px;">
+        <ion-input (keydown.enter)="onKeydown($event)" (input)="MemberTyping($event.target.value)" 
+          style="border: 1px solid grey;height: 35px;margin-left: 5px;border-radius: 15px;" 
+          [(ngModel)]="newMessage"
+          placeholder="Message">
+        </ion-input>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button (click)="sendMessage()">
+          <ion-icon name="send-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+
+    </ion-row>
+  <!-- </ion-grid> -->
+
+</div>

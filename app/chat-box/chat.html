@@ -1,0 +1,51 @@
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-content size="12"  [scrollEvents]="true" style="height: 520px;">
+          <div class="col-md-12  col-lg-12 col-sm-12 col-12" *ngFor="let sms of communication">
+
+            <a class="float-right col-md-7  col-lg-7 col-sm-7 col-7" *ngIf="tempaName['email']==sms.user"
+              data-toggle="collapse" href="#List-{{ i }}"
+              style="background-color: rgb(88, 87, 87);padding: 10px;color: white;border-radius: 10px 10px 0px 10px;text-decoration: none;margin-bottom: 5px;">
+              {{sms.message}} <small class="float-right"> {{sms.time | slice:0:5 }} {{sms.time|slice:9:11}}</small>
+              <div id="List-{{i}}" class="collapse" style="padding: 10px;">
+                <i class="fa fa-trash-o float-right" style="padding: 5px;" (click)="DeleteMessage(sms)"
+                  data-toggle="tooltip" title="Delete" aria-hidden="true"></i>
+                  <!-- <ion-icon class="float-right" style="padding: 5px;" data-toggle="tooltip" title="Delete"  (click)="DeleteMessage(sms)" name="trash-outline"></ion-icon> -->
+              </div>
+            </a>
+
+
+            <div class="float-left col-md-7  col-lg-7 col-sm-7 col-7" *ngIf="tempaName['email']!=sms.user"
+              style="border-radius: 10px 10px 10px 0px;background-color: rgb(70, 160, 73);padding: 10px;padding-left: 20px;color: whitesmoke;margin-bottom: 5px;">
+              {{sms.message}} <small class="float-right"> {{sms.time | slice:0:5 }} {{sms.time|slice:9:11}}</small>
+            </div>
+
+          </div>
+        </ion-content>
+      </ion-col>
+      <ion-col size="12" style="margin-top: 030px;">
+        <!-- <div class="" style="background-color: rgb(207, 205, 205);border-radius: 15px;position: fixed;">
+        <div class="col-md-12 col-12">
+        
+        <ion-input  (keydown.enter)="onKeydown($event)" placeholder="Enter Input"></ion-input>
+        </div>
+        </div> -->
+        <!-- <ion-input  (keydown.enter)="onKeydown($event)" placeholder="Message" style="background-color: rgb(189, 187, 187);position: fixed;bottom: 5px;width: 75%;border-radius: 15px;"></ion-input> -->
+        <ion-row>
+          <ion-col size="10" >
+            <ion-input (keydown.enter)="onKeydown($event)" [(ngModel)]="newMessage" placeholder="Message"
+              style="background-color: rgb(189, 187, 187);position: fixed;bottom: 5px;width: 75%;border-radius: 15px;">
+            </ion-input>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button style="margin-top: -5px;position: fixed;bottom: 5px;" (click)="sendMessage()">
+              <ion-icon name="send-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>

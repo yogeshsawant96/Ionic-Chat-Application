@@ -1,0 +1,70 @@
+<!-- <ion-header>
+  <ion-toolbar >
+    <ion-title><ion-icon name="person-outline"></ion-icon> Log In</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+<div class="" style="background-image: linear-gradient(to bottom right, #1e3c72, #2a5298);padding-top: 40px;height: 100%;">
+  <!-- <div style="margin: 10px;">
+    <form [formGroup]="loginForm">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input  formControlName="email" style="background-color: transparent;"  ></ion-input> 
+      </ion-item>
+      <div *ngIf="loginForm.get('email').touched && loginForm.get('email').invalid" style="color: red;padding: 20px;">
+        Email is Required
+      </div>
+      <br>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <div *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid" style="color: red;padding: 20px;">
+        Password is Required
+      </div>
+      <br>
+    <ion-button color="primary" [disabled]="!loginForm.valid" (click)="login(loginForm.value)">Log In</ion-button>
+    <ion-button color="secondary" (click)="gotoSignUp()" >Sign Up</ion-button>
+    </form>
+</div> -->
+<div style="text-align: center;color: whitesmoke;margin-top: 20px;">
+  <ion-icon name="chatbubbles-outline" style="font-size: 100px;"></ion-icon>
+</div>
+<form [formGroup]="loginForm">
+<ion-grid style="border-radius: 0px;margin: 40px;border: 1px solid white;border-radius: 00px;">
+  <ion-row style="">
+      <ion-col size="2" style="height: 40px;color: whitesmoke;">
+        <ion-label class="float-right" style="margin-top: 5px;"><ion-icon name="person-outline"></ion-icon></ion-label>
+      </ion-col>
+      <ion-col size="10"  style="height: 40px;">
+        <ion-input  formControlName="email" style="background-color: transparent;margin-top: -6px;color: white;"  placeholder="Email"></ion-input> 
+
+      </ion-col>
+  </ion-row>
+</ion-grid>
+<ion-grid style="border-radius: 0px;margin: 40px;border: 1px solid white;margin-top: -15px;">
+  <ion-row>
+      <ion-col size="2" style="height: 40px;color: whitesmoke;">
+        <ion-label class="float-right" style="margin-top: 5px;"><ion-icon name="key-outline"></ion-icon></ion-label>
+      </ion-col>
+      <ion-col size="10"  style="height: 40px;">
+        <ion-input type="password"  formControlName="password" style="background-color: transparent;margin-top: -6px;color: white;"  placeholder="Password"></ion-input> 
+
+      </ion-col>
+  </ion-row>
+</ion-grid>
+
+<div style="margin: 40px;">
+  <ion-button color="success"  [disabled]="!loginForm.valid" (click)="login(loginForm.value)">Log In</ion-button>
+<ion-button color="danger"  (click)="gotoSignUp()" >Sign Up</ion-button>
+
+<!-- <ion-button expand="block" fill="outline" color="success" style="color: whitesmoke;">Log In</ion-button>
+<ion-button expand="block" fill="outline" color="danger" style="color: whitesmoke;">Sign Up</ion-button> -->
+
+</div>
+
+</form>
+</div>
+ 
+</ion-content>
